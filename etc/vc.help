@@ -1,0 +1,498 @@
+#
+# This is the help file for vcd.
+#
+# What follows below is how to create a help topic entry.
+# Here is the entry for .p beeps:
+#
+# {(b)(beep)(beeps)
+# To make your terminal beep when you get a private message type, [.b] 
+# }
+#
+# The open brace '{' signals the begining of a list; the command and it's
+# aliases.  In this example if the user types .?b, .?beep, or .?beeps
+# they will get help. 
+#
+# ANY text not in braces is a comment.
+#
+
+#default help screen.....() is the default for plain .?
+{()(?)(index)
+This is the VCD help system. Type .?<topic name> for help. (i.e .?basics)
+Topics:
+
+basics    channels     color         commands   communication  
+credits   flags        information   mail       modules      
+policy    power        registering    
+} 
+
+
+#announcements
+{(a)(ann)(announce)(announcements)
+To check out recent haven announcements, type [.a]. 
+}
+
+
+#ban list
+{(ban)
+To see which sites have been banned from using this haven, type [.ban].
+}
+
+
+#basics
+{(bas)(basic)(basics)
+Haven basics - What you need to know to get started.
+
+All commands start with one of the following characters:  [.]   [,]   [/].
+All players on the program have their own line number. 
+
+Basics commands:
+===============
+[.n <name>]  Name yourself to <name> i.e.  .nJohn gives you the name John.
+[.q]         Gives you the quote of the day.
+[.?]         Gives you the help index.
+
+For additional help on a command type, [.? <command>].
+} 
+
+
+#beeps
+{(b)(beep)(beeps)
+To make your terminal beep on incoming private messages, type [.b].
+}
+
+
+#channels
+{(c)(channels)
+Channels are provided to give the user a chance to get off of the main channel
+and start their own convos with other users. The main channel is 0. [.c 0].
+
+To move to another channel, or create your own type [.c <channel name>]. 
+Channel names are case sensitive. To lock your channel to prevent others
+from joining type, [.l]. Only the person who locked the channel can unlock it.
+ 
+To see a list of all channels, the number of users on the channels, and 
+whether or not it is locked, type [.c]. 
+}
+
+
+#commands
+{(com)(commands)
+Commands available to you are:
+==============================
+        .a .b .ban  .c .e .f .g .hi .hp .hu .i .intro .l .m .mods 
+        .n .p .q .r .s .t .u .v .w .y .* .~ .?
+
+        .B .Cc .Ch .Cy .C? .D .E .F .M .O .P .R .S .T .U .W 
+}
+
+
+#communication breakdown
+{(comm)(communication)
+Basic methods of communication:
+
+There are three main ways to communicate on this haven: normal talking to 
+the present channel, yelling, and private messages.  All of these can be
+combined with "emotes", or emotions and actions.
+
+By default, any text you type is "said" to the current channel. 
+For more info on yells, type [.? y].
+For more info on private messages, type [.? p]. 
+For more info on emotes type, [.? :].
+}
+
+
+#credits
+{(credit)(credits)
+VCD code was: 
+Developed by Angelo (Angelo Brigante Jr.) and Schrodinger (Gordon J. Chan).
+
+This code was started by Schrodinger near the end of June '95. He then went
+on a trip to Cali to find an apartment before starting grad school. When he 
+came back he no longer had the desire to finish coding it. So then basically
+the code was turned over to me to do with as I pleased. When I got the code
+from Schrodinger, it was basically just a skeleton of a haven, no channels,
+no who or finger lists, none of the database, and no modules. 
+} 
+ 
+
+#.p echoes
+{(e)(echo)(echoes)(pecho)(pechoes)
+To get your text echoed back to you when you send a private message, type [.e].
+
+If you sent this to Butthead on line 1:
+.p1 Hi there!
+
+You would see:
+>> 'Hi there!' sent to (1) Butthead.
+} 
+ 
+
+#emotes
+{(emote)(emotes)(:)(;)(:')(;')
+How to emote:
+
+If you were on line 1 with the name Butt-Head and wanted to show that you love
+nachos you would type:  :loves nachos!!!!!!!
+
+The other users see: (1) Butt-Head loves nachos!!!!!!!
+
+If your head was hurting you could type:  :'s head hurts!
+
+The other users see: (1) Butt-Head's head hurts!
+}
+
+
+#finger
+{(f)(F)(finger)
+There are three uses of the finger commands.
+The first is [.f], which will show you all users connected with line numbers.
+The second is [.f#], which will show as much info as possible about user #.
+
+The third is the [.F <name>] command. This command shows information on user
+<name> who is not currently connected to the haven. If they are, it gives
+you their current line number and finger information.
+
+Also see [.?i]
+}
+
+
+#flags
+{(flag)(flags)(toggle)
+There are several flags you can toggle to alter your enviornment while you
+are on the haven. The flags you can toggle are: beeps, echoes, gags, 
+hilights, hushes, messages, .p suppression, and wrap. 
+
+The commands are:
+For beeps on incoming private messages, type [.b].
+For echoed text when you send a private message, type [.e].
+To gag a user, type [.g#].
+To have incoming private messages hilighted, type [.hi].
+If your terminal doesn't support hilights, type [.hp].
+To ignore all yelled messages, type [.hu].
+To ignore new arrival messages, type [.m].
+To ignore all arrival, departure, and channel messages, type [.M].
+To suppress all private messages, type [.s].
+To set linewrap, type [.W].
+
+To turn these off again, simply retype the command.
+}  
+
+
+#gags
+{(g)(gag)(gags)
+To ignore a dork who is bugging you, type [.g#] to ignore everything this user
+says. To see all of your gags type, [.g]
+} 
+
+
+#h
+{(h)
+Try either [.? hi], [.? hp], or [.? hu].
+}
+
+
+#hilights
+{(hi)(hp)(hilights)(hilites)
+For private hilights, type [.hi]. These will appear in white lettering.
+
+Some terminals can't handle hilights, so use [.hp] instead. It will indent
+your incoming messages with a little prompt to make them stand out.
+}
+
+
+#hush
+{(hu)(hush)
+To ignore all yelled text, type [.hu].
+}
+
+
+#idle finger
+{(i)(idle)
+This command is similar to the .f command, except that it will show you a
+list of users who are idle less than a certain number of minutes. For
+example [.i 10] will show you all users who have been active within the
+last 10 minutes. [.i] by itself will default to 5 minutes.
+}
+
+
+#information
+{(info)(information)
+There are several ways to get information about the users connected to the
+haven. 
+
+For detailed help, look at [.? w] or [.? f].
+}
+
+
+#intro
+{(intro)
+To see the intro screen again, type [.intro].
+}
+ 
+
+#locks
+{(l)(lock)
+To lock a channel, type [.l]. Only the person who locked it can unlock it.
+}
+
+
+#mail
+{(D)(S)(R)(mail)(rmail)(smail)(dmail)
+To leave a message for a user, whether they are logged on or not, you can use
+the haven's mail system. It's pretty crude, maybe I'll enhance it in the
+future. The commands are:
+
+.S <user> = <message>         Send <message> to <user>
+.R [#]                        Type [.R] to read all mail, or [.R#] to
+                              read message #.
+.D [#|all]                    Type [.D #] to erase mail #, or [.D all]
+                              to erase all of your mail. Deleted mail cannot
+                              be retrieved.
+}
+
+
+#messages
+{(m)(M)(mess)(messages)
+To toggle whether or not you see new Arrival Messages, type [.m]. You will
+only see messages when people wander off, join, or exit your present channel.
+
+To ignore ALL messages, type [.M].
+}
+
+
+#modules
+{(mods)(modules)
+Modules are pieces of code that can be added to the haven to add new commands
+and to grab certain events.
+
+To see which modules have user commands, type [.mods].
+To see all modules that are currently running, type [.mods -a].
+}
+
+
+
+#name
+{(n)(name)
+If you don't know, I'm not gonna tell you...
+}
+
+
+
+#the wonderful ops of VCD
+{(op)(ops)(lsu)
+The Ops of this haven are:
+===========================
+ROOT    - 
+ADMIN   - 
+SYSOPS  -
+}
+
+
+#policy
+{(pol)(policy)
+A few things you should know:
+
+(1) This is my haven, my code, and my site. I will run it as I please.
+(2) No one can in any way, shape, or form listen in on private messages.
+}
+
+
+#power
+{(pow)(power)
+This haven is powered. That means certain user's get to execute special
+commands. Remember no one can see private convo's, and abuses of power
+commands will not be tolerated. Please do not hassle the ops with 
+requests for power. If you deserve it, you'll get it.
+}
+
+
+#privates
+{(p)(page)(pages)(private)(privates)(whisper)(whispers)
+To send a private message to a user, the syntax is:
+
+[.p# <message>]. This message will only be seen by you and user #.
+
+Emotes and possessive emotes can also be mixed in. In the following examples
+assume Beavis is on line (1) and Butthead is on line (2).
+
+To emote in a private message you would do the following:
+.p1:is here!  It would give: (2,p) Butthead is here! 
+
+To do a possessive emote you would do the following:
+.p1:'s here!  It would give:  (2,p) Butthead's here!
+
+To suppress all incoming private messages, type [.s].
+}
+
+
+#private suppression
+{(s)(suppress)(suppression)
+To suppress all incoming private messages, type [.s].
+}
+
+
+#quote of the day
+{(q)(quit)(quote)
+To read the quote of the day type, [.q].
+}
+
+#read a bboard message
+{(r)(read)
+To read the messages on the bulletin board, type [.r]
+
+To read a single post type, [.r#] where # is a post number.
+}
+
+#registering
+{(reg)(register)(registering)(res)(resident)(residency)
+This haven allows you to register your name and to save your user stats.
+If you wish to get registered ask an Op, type: [.O].
+
+When you register, your name will be protected with a password, your flags
+total login time, email address, the last time you were connected, and
+description will be saved.  
+
+You must first set a password to be registered. Simply do [.P <password>]
+to set it.  Then type .O and ask one of the ops to register you. 
+
+In the future you must login with the command .n<name> = <password>
+}
+
+
+#time
+{(t)(time)
+To see the current time, type [.t].
+}
+
+
+#uptime
+{(u)(uptime)
+To see how long the haven has been up, type [.u].
+}
+
+
+#who
+{(w)(who)(~)
+The who command is another way to get information on users.
+-----------------------------------------------------------
+The [.w] command will list all players, their line number, name, channel,
+idle time, and host port.
+ 
+[.w #] will list info on user #
+[.w <name>] will list info on user <name>
+[.w <channel>] will list all info on users on channel <channel> 
+
+The [.~#] command will give paged output. It will list 18 users per page.
+At the bottom it will tell you the total number of pages.
+
+Also see [.?*]
+}
+
+
+#who substring searches
+{(*)
+[.*] will perform a strict .w search. This means that if you type
+".* ab" only EXACT matches of "ab" will be found. "abc" would not be found.
+Case, however, is not important.
+}
+
+
+#version
+{(v)(ver)(version)
+To see the current code version, type [.v].
+}
+
+
+#yell
+{(y)(yell)(yells)(shout)
+The yell is another major form of communication.  It allows you not only to
+be in a channel and have a conversation, but to also talk to other users
+who are not hushed and in different channels.
+
+The command is [.y <msg>].  Emotes and possessive emotes can be used in yells
+just as in private messages.
+
+If Beavis on line 1 was to yell "nachos rule!!!!" it would look like:
+(**1, Beavis**) nachos rule!!!!
+}
+
+
+#bulletin board
+{(B)(board)(bulletin)(bboard)
+VCD has it's own bulletin board system where you can leave posts.
+The syntax is [.B <msg>] to post <msg> to the board. You can read the posts
+by using the [.r] command. Or to read a single post use [.r#].
+
+You must have a name to post, and stupid posts will be removed.
+}
+
+
+{(Cy)(Ch)(Cc)(C?)
+Try [.? C] for help on that command.
+}
+
+
+#colors
+{(C)(colors)(color)
+If you so desire you can change the color of private hilights, yells, and
+the normal talking text that appears on your terminal. The commands are
+as follows:
+
+To change the color of channel text, type [.Cc <color #>].
+To change the color of private hilights, type [.Ch <color #>].
+To change the color of yells, type [.Cy <color #>].
+To see your current color settings, type [.C?].
+
+Here are the colors you can choose from:
+(0) off       (7) white
+(1) red       (8) dark red
+(2) green     (9) dark green
+(3) yellow   (10) orange
+(4) blue     (11) dark blue
+(5) purple   (12) dark purple
+(6) cyan     (13) dark cyan
+}
+
+
+#email
+{(E)(email)
+If you are registered you can set your email address so other users can
+track you down via email. The command is [.E <address>].
+}
+
+
+#Oplist
+{(O)
+To see a list of all connected Ops, type [.O].
+}
+
+
+#change password
+{(P)(password)
+To set your password the command is [ .P <password> = <password> ].
+You must type it twice to verify that you did not make a typo in 
+your password.
+}
+
+
+#stats
+{(T)(toggles)(stats)
+Typing [.T] will show you some current flags that are set on the haven such as:
+whether or not idle timeouts are on, the idle timeout length, if auto cap
+removal is on, and if asynchronous name service is on.
+}
+
+
+#url
+{(U)(url)(homepage)
+To set your homepage URL, type [.U <url>].
+}
+
+
+#screen wrap
+{(W)(linewrap)(wrap)
+If your terminal does not have linewrap, you can set the haven to do it for
+you.  Typing [.W] will set your linewrap do the default of 80 characters.
+Typing [.W#] will set your line wrap to # characters. To turn linewrap off
+simply type [.W] again.
+}

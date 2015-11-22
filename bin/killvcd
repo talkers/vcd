@@ -1,0 +1,3 @@
+#vcd kill script
+#!/bin/sh
+kill -9 `cat ../etc/vcd.pid`

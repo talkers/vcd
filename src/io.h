@@ -1,0 +1,44 @@
+/*
+	VCD Haven Code Version 4.0.0
+	Copyright (C) 1995 Angelo Brigante Jr. & Gordon Chan
+	Copyright (C) 1996, 1997, 1998, 1999 Angelo Brigante Jr.
+
+	This program is free software; you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation; either version 2 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+	Send comments and bug reports to:  ang@up-above-it.org
+*/  
+
+
+#define T_SHORT 1
+#define T_LONG	4
+
+char		*stripspace();
+void		stripcr();
+char		*stripdigit();
+char		*stripwhite();
+int             matchstring();
+int		readline();
+int		processinput();
+char		*extractline();
+void		writewrap();
+int		writedesc();
+void		writelist();
+void		writetext();
+void		writefile();
+void		writelevel();
+char		*itoa();
+char		*timeform();
+void		removecaps();
+void            titlebar();

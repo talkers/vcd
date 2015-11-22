@@ -1,0 +1,214 @@
+#
+# This is the power help file for vcd.
+#
+# What follows below is how to create a power help topic entry.
+# Here is the entry for .@?Y
+#
+# {2(Y)(globalyell)
+# To send a system message, type [.@Y <message>]. All users will see this
+# message regardless of being hushed or suppressing pages.
+# }
+#
+# The open brace '{' signals the begining of a list; the command and it's
+# aliases. The number 2 means that only users of level 2 (or greater) will
+# be shown this help topic. In this example if the user types .@?Y or 
+# .@?globalyell they will get help.
+#
+# ANY text not in braces is a comment.
+#
+
+#Root Menu
+{3()(?)(index)(menu)
+VCD Root Help System. Topics:
+
+autodecap, ban, decap, demote, erasepost, fakehost, globalyell,
+invismess, kill, killmodule, loadmodule, nuke, ophush, opchannel,
+promote, purge, register, shutdown, softboot, timeouts, unban
+
+Type .@?<command> for more help or .@?com for a list of op commands.
+}
+
+#Admin Menu
+{2()(?)(index)(menu)
+VCD Admin Help System. Topics:
+
+autodecap, ban, decap, erasepost, fakehost, globalyell, invismess, kill,
+killmodule, loadmodule, nuke, ophush, opchannel, register, softboot, 
+timeouts, unban
+
+Type .@?<command> for more help or .@?com for a list of op commands. 
+}
+
+#SysOp Menu
+{1()(?)(index)(menu)
+VCD SysOp Help System. Topics:
+
+decap, erasepost, fakehost, kill, ophush, opchannel, register 
+
+Type .@?<command> for more help or .@?com for a list of op commands. 
+}
+
+
+#Root Commands
+{3(com)(commands)
+Commands available to you are:
+==============================
+        .o
+        .@a .@b .@e .@h .@i .@k .@l .@nuke .@purge .@reg .@shutdown
+        .@t .@u .@H .@K .@L .@S .@Y .@+    .@-
+}
+
+
+#Admin Commands
+{2(com)(commands)
+Commands available to you are:
+==============================
+        .o
+        .@a .@b .@e .@h .@i .@k .@l .@nuke .@reg
+        .@t .@u .@H .@K .@L .@S .@Y
+}
+
+
+#SysOp Commands
+{1(com)(commands)
+Commands available to you are:
+==============================
+        .o
+        .@e .@h .@k .@l .@reg
+        .@H
+}
+
+
+#Auto-decap
+{2(a)(autocap)(autodecap)
+To enable auto-cap removal, type [.@a].
+}
+
+
+#ban sites
+{2(b)(ban)(bansite)
+To ban a site that is not on the ban list type [.@b<site>]. This creates
+a permanant ban on that site. To ban a site for any number of seconds,
+type [.@b<site>:<secs>]. For example: [.@bblah:3600] bans site blah for
+one hour.
+
+To unban a site, simply type [.@u <siteid>].
+
+[.@b] also lists banned sites and when they expire.
+}
+
+
+#erase post
+{1(e)(erase)(erasepost)
+To erase a post from the bulletin board the command is [.@e#].
+}
+
+ 
+#invismess
+{2(i)(invismess)
+To send a global fake message do [.i <message>].
+To send a private fake message do [.i# <message>].
+}
+
+
+#kick
+{1(k)(kick)(kill)
+To kick an annoying user off the haven, type [.@k#].
+}
+
+
+#Nuke
+{2(nuke)
+NUKE COMMAND
+
+To erase a player totally from the database, type [.@nuke <name>].
+The only way to bring a player back is possibly from back-ups.
+
+THIS WILL BE LOGGED.
+} 
+
+
+#op channel
+{1(o)(h)(opchannel)(ophush)
+You have the privilage of using the op channel.
+Type [.o <msg>]. This is just like the yell command, except it is only 
+for ops and only ops will see it.
+
+Note: This command is [.o] NOT [.@o].
+
+To hush/unhush the op channel, type [.@h].
+}
+
+
+#purge old users
+{3(purge)
+To purge all user's whose accounts have been inactive too long,
+type [.@purge].
+}
+ 
+#creating an acct
+{1(reg)(register)(registering)(registration)
+To create an account for user #, type [.@reg #].
+}
+
+
+#shutdown
+{3(shutdown)
+To shutdown the haven, type [.@shutdown].
+}
+
+
+#timeouts
+{2(t)(timeouts)
+To turn idle timeouts on or off, type [.@t].
+
+To set the idle timeout in seconds, type [.@t+<secs>].  For example to set a
+one hour idle timeout, type [.@t+3600]. 
+}
+
+
+#unban
+{2(u)(unban)
+To remove a banned site, simply type [.@u <siteid>].
+}
+
+
+#put a user into all lower case
+{1(l)(decap)(nocaps)(caps)
+To remove or restore a user's caps, type [.@l #].
+}
+
+
+#set a fake host name
+{1(H)(fakehost)
+To set a fake host name for yourself, type [.@H <host name>].
+}
+
+
+#modules
+{3(K)(L)(killmodule)(loadmodule)(mod)(mods)(modules)
+To kill a module, type [.@K <module id>].
+To load a module, type [.@L <module name>].
+}
+
+
+#softboot
+{2(S)(softboot)
+To softboot the haven, type [.@S].
+}
+
+
+#system msg
+{2(Y)(globalyell)
+To send a system message, type [.@Y <message>]. All users will see this
+message regardless of being hushed or suppressing pages.
+}
+
+
+#promote/demote
+{3(+)(-)(promote)(demote)
+To raise a user's power level, type [.@+ #]. The highest level a user can be 
+promoted to is "Admin".
+
+To lower a user's power level, type [.@- #].
+}

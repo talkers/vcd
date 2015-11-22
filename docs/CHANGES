@@ -1,0 +1,427 @@
+vcd change log - Changes made since version 1.31
+================================================
+- = comments about changes
+* = comments of particular interest
+
+Anything before 1.31 I dont remember :)
+It was mostly adding the database and softboots and fixing tons and tons of 
+bugs. The first ``offical'' version was 1.07.   
+
+Note: This code was 'born' in June of 1995.
+
+
+1.32 (April 17th, 1996)
+-----------------------
+[db.c]
+  - removed "./files/players/" from player files and updated db.c accordingly 
+  - removed member "fn" from struture user and replaced it with "key"
+  - Mostly, I just improved the db. Too much stuff to remember :)
+  - Made player with datafile #1 "GOD" 
+[parse.c]
+  - Added command ".*" and function togglewhosubstr();
+
+
+1.33 (April 29th, 1996)
+-----------------------
+[parse.c]
+  - Added the command ".i" and modified fingerpage(); accordingly. 
+[log.c]
+  - Added smartlog(); to avoid logging common unimportant errors.
+    Updated log() and logerr() accordingly.
+[db.c]
+  - Added get_new_reg(); function. Code was removed from registernew(); and
+    placed into the new function.	
+  
+
+2.0.0 (June 23rd, 1996) (renamed from 1.34 after mail was added)
+---------------------
+[*.c] 
+  - Added all prototypes of local functions.
+[parse.c] 
+  - Alphabetized the command parser.
+  - Cleaned up emote checking in functions: talk(), yells(); and private().
+  - Improved the output of fingerpage(); It now lines up all of the names
+    and closing bracket whether or not 'H', 'P', or 'Q' is toggled and whether
+    or not the line number is one digit or two.
+[chat.c] 
+  - in function checkidle() removed:
+        if (timeouts) return;
+  - added it to the statements:
+	} else if (!num && timeouts) {
+    	if (timeouts && (systemtime - lastcheck) > idletimeout)
+[db.c]
+  - removed the free((struct user *) dummy);'s from dbnuke();
+  - removed the free((struct user *) dummy) from display_saved_user() and
+    placed it in finger_user_name();
+  - It screwed up the linked index list in memory when I placed the
+    malloc inside finger_user_name() for some reason. This happened with the
+    addition of the free(); (see above)	
+  - added function notreg();	
+* - I totally rewrote get_new_reg() and called it get_first_free_key();
+    This is _MUCH_ better because nuked user keys were previously not reusable.
+    With this new code a new registered user is not automatically attached to
+    the end of the index linked-list. It will be inserted at the first 
+    available key. 
+  - Changed struct user member "key" to int type from unsigned long. Changed
+    all "%lu"'s to "%d" that dealt with key. Changed the (unsigned)atol()'s to
+    atoi();
+  - Removed that stupid for loop and the if statements from load_user(). 
+[softboot.c]
+  - Changed "key"'s from "%lu" to "%d" 
+[killvcd.c]
+  - Replaced killvcd* with a shell script
+[talker.c]
+* - Fixed the memory leak with softboots running under FreeBSD. When you 
+    softbooted the haven under FreeBSD the amount of mem the haven took up
+    jumped about 1.5 to 2 times what it was before. This did not happen under
+    Linux. Linux must be smarter 8-). I simply moved "if (!sboot) {" from it's
+    location and stuck it after the switch-case statement. This let the haven
+    fork itself off again.
+[help.c]
+  - Cleaned up the help parser. Should no longer crash under SunOS.
+[mail.c]
+  - added mail.
+  - wrote functions countmail(), appendmailspool(), sendmail(), readmail(),
+    deletemail().
+[lists.h]
+  - added flag NEWMAIL;
+
+
+2.0.1 (July 5th, 1996)
+---------------------------
+[]
+  - renamed writelisttext() to writelist()
+    renamed writewrapdesc() to writewrap()
+    renamed writedesctext() to writedesc()
+  - removed all extern declarations from *.c files
+[db.c]
+  - added string searches to showreg(); ".reg A" whould show all reg'd users
+    whose name starts with 'a' or 'A'. ".reg Ang" would show all names 
+    starting with Ang. Case doesn't matter. ".reg" would just show the number
+    of reg'd users and last key.
+[parse.c]
+  - split file up into commands.c and parse.c
+[externs.h]
+  - added all external function declarations and variable definitions.
+
+
+2.0.2 (September 22nd, 1996)
+----------------------------
+[io.c] 
+  - Fixed spam protection. When I had originally changed it so you could spam
+    in your own channel I neglected to prevent .p bombing or spam thru yells.
+    This included adding a new struct user member "commands" and modifying only
+    processinput() and setting new->commands = 0 in logonnew() from chat.c.
+[commands.c]
+  - Fixed the ">> Stats saved."
+	      ">> Please choose a REAL name." bug. this happened when a 
+    registered user typed '.n'	
+  - Got rid of WHOSUBSTR and togglewhosubstr(). .* does strict .w searches.
+    ".* ab" finds only "ab" and not "abc".  Case is unimportant.
+[io.c]
+  - added sendts() function. 
+
+
+2.0.3 (November 18th, 1996)
+---------------------------
+[*.c]
+  - removed #ifndef NODATABASE/#endif's
+  - removed #ifdef DEBUG/#endif's
+[vc.*]
+  - updated vc.help
+[parse.c]
+  - Modified spam protection so only ``.c'' , ``.p'', and ``.y'' count
+    as commands.  This is helpful for people who have long tf macros that
+    exceed the spam limit for commands.
+
+
+2.1.0 (January 15th, 1997)
+-------------------------------------------
+[custom.h]
+  - added #define GODSNAME
+[power.h]
+  - Got rid of level 0.
+  - added #define P_* flags. Makes it easier to set the power level needed
+    to execute a certain command. added checkpower() in power.c.
+[commands.c]
+  - in setcolors(); Added command .A? to see your current color settings
+  - in private(); Added last .p.  Just do .p <msg> and it will .p the last
+    user you successfully .p'd.
+  - yells(); Trying to yell while hushed will now unhush you and let you yell.
+[db.c]
+  - User key #1 is no longer GOD...level four's are once again.
+    The name defined by GODSNAME in custom.h is the supreme god.
+  - added function do_reg_command(). This function checks if the user is
+    registered before executing a command. If they aren't, it gives them
+    a message. Any command that you want a user to be registered to execute
+    should be fed through this. Removed notreg().  
+  - added seturl(); Used to let users set their URLs.
+  - added setlocation(); Used to let users set their location.
+  - added change_user_data();  Allows a GOD to change a saved user's power
+    level or password.
+  - removed update_db();
+[help.c]
+  - replaced DASHLINE with a title bar of the command user is getting help on.
+[io.c]
+  - removed sendts(); from vcd... it caused "noise" for some users, almost
+    like the '#' problem for mac users.
+[mail.c]
+  - .R will now wrap long mails for ppl without tf or WRAP toggled.
+[parse.c]
+  - further alphabetized parser.
+  - added case 'U' seturl() - see [db.c].
+  - added case 'L' setlocation() - see [db.c]
+  - added case '@P' - see below. 
+  - Renamed the following commands:
+    .W is now .~	(paged who output)
+    .S is now .W	(wrap)
+    .smail is now .S    (send mail)
+    .rmail is now .R	(read mail)
+    .dmail is now .D	(delete mail)
+    .s is now .T	(toggles)
+    .P is now .s	(p suppress)
+    .X is now .P	(Password)
+[power.c]
+  - added checkpower(). Compares a user's power level to the minimum level
+    needd to execute certain power commands.
+  - added insuf_power(). Gives messages if a user tries to perform a command
+    on someone they have no power over. 
+
+
+2.2.0 (April 21st, 1997)
+---------------------------
+
+   This is pretty lame. I didn't document it as I made the changes. There 
+   were just too many. If you can't live with that, too bad. Most of the  
+   new stuff invloves "mods.c" and the implementation of the modules and 
+   asynchronous name service.
+		-- Angelo
+
+* New directory structure.
+  - Sub-dirs inside /players and /mail
+  - fixed paths elsewhere in source code where required.
+[chat.c]
+  - modified checkidle() to return the time the next idle check should be done.
+    This introduced the nextcheck variable.
+[custom.h] 
+  - re-organized this file so it looks nicer. Added ROOT.
+  - changed path of VCDINDEX to ../files/vc.index
+[macros.h]
+  - added powerover macro to determine which player outranks another.
+[commands.c]
+  - The old color command .A is now .C
+  - all module commands start with .#
+  - To take caps it is now .@l
+  - Help for power is now .@?<topic> or .@?<command>
+  - To ban a site is now .@b<string>
+  - To unban a site it's now .@u<site id>
+  - Fixed fingerpage() so it now does a user's brackets correct whether
+    or not they have a 1, 2, or 3 digit line number.
+[db.c]
+  - New format for saving/loading users. Similar to how softboot images
+    are saved and loaded. Makes it easier to update the database.
+  - passwords are now encrypted. added function cryptpassword() which
+    generates a random salt for every password.
+  - got rid of all references to change_user_data(). I didn't like it.
+[help.c]
+  - got rid of getpowerhelp(). getuserhelp() now does both.
+[io.c]
+  - Deleted writedescfile(), writefile() is all you need now.
+[lists.c]
+  - got rid of do_ban()
+[mod.c]
+  - Added modules a la Joel Ward's (Valtaire) Opium Den modules.
+  - This required hacking up chat.c and io.c, if you really want to know
+    what was changed, compare it to version 2.0.3.
+  - Events were added. i.e. Asynchronous name service. If the mod dies,
+    the haven will take over name service.
+  - Parse strings were added as well. Every command that should be intercepted
+    by a module gets it's own parse string. The parse string holds the 
+    command name, the format string, and points to the mod that owns it.
+    READ MOD.DOC for more help.
+[softboot.c]
+  - added user port to softboots. For some reason this was left out.
+
+
+	That's it, REALLY lame documentation for this version.
+	Who the hell reads the CHANGES anyway? :)
+
+
+3.0.0 (July 28th, 1997)
+-----------------------
+* Got rid of externs.h. Every .c file now has a corresponding .h file.
+  vcd.h includes every *.h file, so you only need to include vcd.h now.
+* Another new directory structure. Keys are now put into a directory with the
+  corresponding first letter (or other) of a user's name.
+[chat.c]
+  - Ops will no longer idle out.
+  - There is no longer a default description.
+[db.c]
+  - Added purge() to delete old users.
+  - Changed verify_user() so it no longer looks up the user in the database
+    twice. Just passed the pointer from changename(). (commands.c)
+  - Got rid of total time connected. It is dumb anyway on a haven where users
+    are famous for idling for days at a time. This required getting rid of
+    "totsecs" from struct user.
+[io.c]
+  - In function extractline() finally added ^H ('\177') delete support
+  - Added long idle time formats, i.e. 1 Day 5 Hours 17 Minutes 7 Seconds
+[lists.c]
+  - Moved the exit message to nukeuser(). This way the '>> Stats saved.'
+    and exit messages are printed in the correct order.
+[mods.c]
+  - Created dup_module(). It dup2()'s a module's fd to the highest open fd.
+  - Created execute_event(). Is similar to writelist(). Passes the event_id
+    along with a list of strings to module that owns event_id. Allows minimal
+    hacking of the code to send stuff to modules.
+  - Created send_pstr(); This sends the user's line number, expanded arguement
+    string, and the user's input to the module that owns the parse string.
+    NEW: The $l and $i substitutions in expand args no longer exist. Every parse
+	 string sent to a mod now has the user's line as the FIRST arguement and
+         their input as the LAST arguement
+[socket.c]
+  - Added the fd_master_*() functions and got rid of the master global variable.    
+[talker.c]
+  - Added system_flags.
+ 
+[/mods]
+  - wrote mod.template.c. This can be used to capture the arguements from
+    a packet that is sent to a module. Hack it up to your heart's content.
+
+
+VCD 3.0.1 (September 1st, 1997)
+-------------------------------
+[mail.c]
+  * Fixed a bug with .R#. If you typed .R5 but only had three mail messages,
+    I neglected to close the player's mail file. This ate up a file
+    descriptor which is VERY bad :)
+  - Fixed another bug where if you didn't type .R followed by a number it
+    would say you didnt have that many messages.
+  - Various other small formatting changes with mail functions to make output
+    appear nicer.
+
+
+VCD 3.0.2 (October 29th, 1997)
+------------------------------ 
+  - Removed Makefile from the vcd root directory. We only need one Makefile
+    now. It is in the src subdirectory.
+[Makefile]
+  - Added "make linux", "make freebsd" or "make solaris" options. People
+    never would read the make file and see they needed to uncomment  
+    -lcrypt for freebsd. This takes care of that.
+[log.c]
+  - Fixed a small bug with smartlog().  FreeBSD did not recognize the 
+    EXFULL constant.
+
+
+VCD 3.1.0 (January 4th, 1998)
+-------------------------------
+- Various asthetic changes to make the code look nicer :)
+- Updated the help files! (I think they're pretty complete)
+[chat.c]
+  - Fixed a bug in logonnew. Was new->descrip[DESCMAX] = '\0'; Should have
+    been new->descrip[0] = '\0'; This gave every new user logging in the
+    description of the last person to set one :)
+  - Fixed a bug with checkidle(). This occurred when you changed the idletimeout
+    to a new length. The next check would still depend on what the OLD 
+    nextcheck value was. This fix required checking for idlers when the
+    timeout length was changed in [power.c] toggletimeouts()
+[commands.c]
+  - Yelling when hushed will no longer unhush you and let you yell. That
+    was a stupid feature implemeted in 2.1.0.
+  - in changename(). Added me->level = JOEUSER when a registered user changes 
+    their name. This prevents you from accidently (or on purpose ;) loging in
+    as root, changing your name, and registering your new name. This would
+    keep you at root's power level. When you quit, you'd be saved with
+    root level access. I don't know why the power level wasnt zeroed out a
+    long time ago.
+  - in fingeruser(). Removed the showing of the user's port. Potential
+    for abuse by identing someone and finding out their email. Also changed
+    a lot of writelist's to writetext's
+  - added .@c; Allows registration of a name for a user who is not logged in.
+[db.c]
+  - added functions init_new_entry(), create_root(), create_user()
+[mail.c]
+  - various minor changes to readmail(). got rid of stripcr()'s, made arrays
+    smaller, removed a sprintf, added some DASHLINEs, and added wrapping for
+    single messages.
+[mods.c]
+  - Modules now claim multiple events. struct module event was switched from 
+    int to fd_set.   
+  - Added struct channel to module structure.
+  - Mods can now be channeled with the mod "channel" command.
+  - Mods can write to all user's in it's channel with mod "writechan" command.
+[power.c]
+  - Got rid of checkpasswd(). No more .q power ups.
+  - Got rid of showpasswd(). 
+[power.h]
+  - Redefined power level values.
+  - added power_names[] array.
+[talker.c]
+  - Added check for root user on boot up. If there is no root user one will
+    be created. You will be prompted for root's password.
+[socket.c]
+  - renamed fd_master_isset*() functions to fd_ready() and fd_master_isset(). 
+
+VCD 4.0.0 (May 15th, 1998 -> December 2nd, 1998)
+--------------------------
+renamed files dir to etc.
+renamed vc.badsites to vc.deny
+moved some #defines around.
+[*.c] 
+  - changed many writelists to writetexts
+[*.h]
+  - got rid of sysdep.h
+  - moved filepaths from custom.h to files.h
+[channels.h]
+  - added struct module to the channel structure. re-wrote how modules are
+    attached to channels.
+[board.c]
+  - moved board commands from commands.c and io.c to board.c
+  - Fixed tiny bug on read_messages....added defaultmsg when file doesnt exist
+[chat.c]   
+  - added not_system(NAMESERVICE) to checkban in newuser();
+[channels.c]
+  - added the concept of a public channel i.e. one that cannot be locked.
+  - created the concept of a user owning a channel, user to create it owns it
+    -- only the owner can lock/unlock it
+    -- if an owner quits/leaves the channel, the next user to lock it owns it
+  - Added the .k command to kick a user from a channel...boots them to main
+  - Got rid of the stupid for loop in delete_channel() ... added channeltail
+    variable instead.
+  - Moved channelhead definition from lists.c to channels.c
+        (why wasnt it there to begin with YEARS ago???)
+[commands.c]
+  - Fixed long hostnames. It will now show you the last HOSTMAX characters of
+    the site name, instead of the first HOSTMAX. This way you can save the 
+    domain name, etc.
+  - reformatted the .ban list accordingly
+  - changed the format of .f and .F to look like UNIX finger
+[db.c]
+  - Completely rewrote the database. names, passwords, and keys are no longer
+    stored in memory. completely got rid of keys. a user's data is stored in
+    a file that is a lowercase version of their name.
+  - changed tags in save_user and load_user to more than 4 chars
+[io.c]
+  - Renamed stripltspaces to stripwhite
+[lists.c]
+  - Renamed nukeuser to disconnect
+  - Modified disconnect so it won't print the exit and save_user
+    message if there was a read error.
+[log.c]
+  - Reformatted the log functions
+[mail.c]
+  - updated mail funtions to work with the new database.
+[mods.c]   
+  - revised send_pstr so the haven doesnt crash if the module has no arguments.
+  - fixed dup_module...should have been MAXLOGINS-2
+  - Fixed killmodule and delmodule. 
+  - Moved kill to delmodule
+  - Fixed mods so their channels will be deleted accordingly
+  - Got rid of the concept of a user owning a module.
+  - Got rid of .#p and .#w
+[parse.c]
+  - changed .#l to .@L
+  - changed .#k to .@K
+[talker.c]
+  - changed limit.rlim_cur =  MAXLOGINS;
